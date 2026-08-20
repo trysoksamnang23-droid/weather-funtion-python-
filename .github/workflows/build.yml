@@ -31,17 +31,13 @@ jobs:
         pip install --upgrade pip
         pip install "cython<3.0.0" buildozer
 
-    - name: Fix System Android SDK Paths & Accept Licenses
-      run: |
-        # Create legacy tools directory expected by Buildozer
-        sudo mkdir -p /usr/local/lib/android/sdk/tools
-        sudo ln -s /usr/local/lib/android/sdk/cmdline-tools/latest/bin /usr/local/lib/android/sdk/tools/bin
-        
-        # Accept licenses
-        yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
-
     - name: Build APK with Buildozer
-      run: buildozer -s android debug
+      run: |
+        # If your main file is named weather.py, temporarily copy it to main.py before building
+        if [ -f "weather.py" ] && [ ! -f "main.py" ]; then
+          cp weather.py main.py
+        fi
+        buildozer -s android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
