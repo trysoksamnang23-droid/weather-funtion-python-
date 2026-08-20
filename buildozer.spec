@@ -36,10 +36,19 @@ android.api = 33
 # (int) Minimum API supported
 android.minapi = 24
 
-# (list) The Android archs to build for
+# (str) Android NDK version
+android.ndk = 25b
+
+# (int) Android NDK API
+android.ndk_api = 24
+
+# (list) Android archs
 android.archs = arm64-v8a
 
-# (bool) enables Android auto backup
+# (bool) Auto accept SDK license
+android.accept_sdk_license = True
+
+# (bool) Enable auto backup
 android.allow_backup = True
 
 [buildozer]
@@ -49,6 +58,3 @@ log_level = 2
 
 # (int) Display warning if buildozer is run as root
 warn_on_root = 1
-
-android.accept_sdk_license = True
-android.skip_update = False
