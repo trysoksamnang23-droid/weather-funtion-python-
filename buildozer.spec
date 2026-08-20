@@ -45,8 +45,8 @@ android.ndk_api = 24
 # (list) Android archs
 android.archs = arm64-v8a
 
-# (str) Android SDK path
-android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
+# (str) Point directly to GitHub Actions system Android SDK
+android.sdk_path = /usr/local/lib/android/sdk
 
 # (bool) Auto accept SDK license
 android.accept_sdk_license = True
