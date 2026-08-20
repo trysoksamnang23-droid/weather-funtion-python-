@@ -18,8 +18,8 @@ source.include_exts = py,png,jpg,kv,atlas
 # (str) Application versioning
 version = 0.1
 
-# (list) Application requirements (Includes SSL and KivyMD fixes)
-requirements = python3,kivy==2.3.0,https://github.com/kivymd/KivyMD/archive/master.zip,requests,urllib3,certifi,idna,chardet
+# (list) Application requirements
+requirements = python3,kivy,kivymd,requests,urllib3,certifi,idna,chardet
 
 # (list) Supported orientations
 orientation = portrait
