@@ -45,6 +45,9 @@ android.ndk_api = 24
 # (list) Android archs
 android.archs = arm64-v8a
 
+# (str) Android SDK path
+android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
+
 # (bool) Auto accept SDK license
 android.accept_sdk_license = True
 
@@ -58,6 +61,3 @@ log_level = 2
 
 # (int) Display warning if buildozer is run as root
 warn_on_root = 1
-
-android.sdk_path = /home/runner/.buildozer/android/platform/android-sdk
-android.accept_sdk_license = True
