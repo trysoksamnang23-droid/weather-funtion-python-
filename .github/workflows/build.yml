@@ -31,13 +31,12 @@ jobs:
         pip install --upgrade pip
         pip install "cython<3.0.0" buildozer
 
-    - name: Build APK with Buildozer
+    - name: Target weather_apk.py as Main Code Entry
       run: |
-        # If your main file is named weather.py, temporarily copy it to main.py before building
-        if [ -f "weather.py" ] && [ ! -f "main.py" ]; then
-          cp weather.py main.py
-        fi
-        buildozer -s android debug
+        cp weather_apk.py main.py
+
+    - name: Build APK with Buildozer
+      run: buildozer -s android debug
 
     - name: Upload APK Artifact
       uses: actions/upload-artifact@v4
