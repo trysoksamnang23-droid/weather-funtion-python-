@@ -31,17 +31,21 @@ jobs:
         pip install --upgrade pip
         pip install "cython<3.0.0" buildozer
 
-    - name: Pre-install Android SDK Tools & AIDL
+    - name: Setup Android SDK Tools (Legacy Structure Fix)
       run: |
         mkdir -p $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest
-        wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
+        wget -q https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -O cmdline-tools.zip
         unzip -q cmdline-tools.zip
         mv cmdline-tools/* $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/ || true
         rm -rf cmdline-tools.zip cmdline-tools
-        
+
+        # Fix missing tools/bin path expected by Buildozer
+        mkdir -p $HOME/.buildozer/android/platform/android-sdk/tools
+        ln -s $HOME/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin $HOME/.buildozer/android/platform/android-sdk/tools/bin
+
         export ANDROID_HOME=$HOME/.buildozer/android/platform/android-sdk
         export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$PATH
-        
+
         yes | sdkmanager --licenses
         sdkmanager "build-tools;33.0.2" "platforms;android-33" "platform-tools"
 
