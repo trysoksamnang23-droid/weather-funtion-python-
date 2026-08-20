@@ -31,7 +31,7 @@ jobs:
         pip install --upgrade pip
         pip install "cython<3.0.0" buildozer
 
-    - name: Target weather_apk.py as Main Code Entry
+    - name: Copy weather_apk.py to main.py
       run: |
         cp weather_apk.py main.py
 
