@@ -1,12 +1,51 @@
-# 1. Purge broken tools
-!pip uninstall -y buildozer python-for-android cython
-!rm -rf ~/.buildozer/ .buildozer/
+[app]
 
-# 2. Install stable toolchain versions
-!apt-get update && apt-get install -y build-essential ccache git libffi-dev libssl-dev python3-dev zip unzip zlib1g-dev openjdk-17-jdk
-!pip install "cython<3.0.0" "setuptools<70.0.0" sh jinja2
-!pip install git+https://github.com/kivy/buildozer.git
-!pip install git+https://github.com/kivy/python-for-android.git
+# (str) Title of your application
+title = Cambodia Weather
 
-# 3. Trigger clean build
-!buildozer -s android debug
+# (str) Package name
+package.name = cambodiaweather
+
+# (str) Package domain
+package.domain = org.test
+
+# (str) Source code directory
+source.dir = .
+
+# (list) Source files to include
+source.include_exts = py,png,jpg,kv,atlas
+
+# (str) Application versioning
+version = 0.1
+
+# (list) Application requirements
+requirements = python3,kivy,kivymd,requests
+
+# (list) Supported orientations
+orientation = portrait
+
+# (bool) Indicate if application should be fullscreen
+fullscreen = 0
+
+# (list) Permissions
+android.permissions = INTERNET
+
+# (int) Target Android API
+android.api = 33
+
+# (int) Minimum API supported
+android.minapi = 24
+
+# (list) The Android archs to build for
+android.archs = arm64-v8a
+
+# (bool) enables Android auto backup
+android.allow_backup = True
+
+[buildozer]
+
+# (int) Log level (0 = error only, 1 = info, 2 = debug)
+log_level = 2
+
+# (int) Display warning if buildozer is run as root
+warn_on_root = 1
