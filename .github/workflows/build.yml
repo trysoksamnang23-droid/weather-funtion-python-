@@ -31,9 +31,14 @@ jobs:
         pip install --upgrade pip
         pip install "cython<3.0.0" buildozer
 
-    - name: Accept Android SDK Licenses
+    - name: Fix System Android SDK Paths & Accept Licenses
       run: |
-        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+        # Create legacy tools directory expected by Buildozer
+        sudo mkdir -p /usr/local/lib/android/sdk/tools
+        sudo ln -s /usr/local/lib/android/sdk/cmdline-tools/latest/bin /usr/local/lib/android/sdk/tools/bin
+        
+        # Accept licenses
+        yes | /usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
     - name: Build APK with Buildozer
       run: buildozer -s android debug
